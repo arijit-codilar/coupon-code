@@ -5,7 +5,6 @@
  * @copyright Copyright © 2019 Codilar Technologies. All rights reserved.
  * @author    arijit@codilar.com
  */
-//$block->getCouponCodeList();
 ?>
 <div class="block discount" id="block-discount" data-mage-init='{"collapsible":{"openedState": "active", "saveState": false}}'>
     <div class="title" data-role="title">
@@ -26,7 +25,7 @@
                             title="<?= /* @noEscape */ $block->escapeHtml(__("coupon_code"));?>"
                             class="validate-select">
                         <option value=""><?= $block->escapeHtml(__('Please select a coupon')) ?></option>
-                        <?php foreach ($block->getCouponCodeList() as $coupon): ?>
+                        <?php foreach ($block->getCouponCodes() as $coupon): ?>
                             <option value="<?= $coupon->getCode() ?>" <?php if ($coupon->getCode() == $block->getCouponCode()): ?> selected <?php endif; ?> ><?= $coupon->getCode() ?></option>
                         <?php endforeach; ?>
                     </select>
