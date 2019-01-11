@@ -9,17 +9,31 @@
 namespace Codilar\CouponCode\Model;
 
 use \Magento\Checkout\Model\ConfigProviderInterface;
+use \Codilar\CouponCode\Model\CouponFactory;
 
 class CouponCodeConfigVars implements ConfigProviderInterface
 {
-    public function __construct()
-    {
+    private $couponFactory;
 
+    /**
+     * CouponCodeConfigVars constructor.
+     * @param CouponFactory $couponFactory
+     */
+    public function __construct(
+        CouponFactory $couponFactory
+    )
+    {
+        $this->couponFactory = $couponFactory;
     }
 
     public function getConfig()
     {
-        $couponCodes['coupon_codes'] = ['1', 'A'];
+        $couponModel = $this->couponFactory->create();
+        $coupons = $couponModel->getCouponCodes();
+        foreach($coupons as $coupon){
+            $codes[] = $coupon->getCode();
+        }
+        $couponCodes['coupon_codes'] = $codes;
         return $couponCodes;
     }
 }
