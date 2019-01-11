@@ -9,8 +9,6 @@
 namespace Codilar\CouponCode\Block\Cart;
 
 use Magento\Checkout\Block\Cart\Coupon as BaseCoupon;
-use Magento\SalesRule\Model\RuleFactory;
-use Magento\SalesRule\Model\Utility;
 
 
 /**
@@ -21,29 +19,27 @@ class Coupon extends BaseCoupon
 {
 
     /**
-     * @var CouponCollectionFactory
+     * @var \Codilar\CouponCode\Model\CouponFactory
      */
-    private $couponCollectionFactory;
+    private $couponFactory;
 
     /**
      * Coupon constructor.
+     *
+     * @param \Codilar\CouponCode\Model\CouponFactory $couponFactory
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Checkout\Model\Session $checkoutSession
      * @param array $data
      */
     public function __construct(
-        RuleFactory $ruleFactory,
         \Codilar\CouponCode\Model\CouponFactory $couponFactory,
-        Utility $salesUtility,
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Checkout\Model\Session $checkoutSession,
         array $data = []
     ) {
-        $this->ruleFactory = $ruleFactory;
         $this->couponFactory = $couponFactory;
-        $this->salesUtility = $salesUtility;
         parent::__construct(
             $context,
             $customerSession,
@@ -53,9 +49,11 @@ class Coupon extends BaseCoupon
     }
 
     /**
+     * Get Coupon Codes
      *
+     * @return array
      */
-    public function getCouponCodeList()
+    public function getCouponCodes()
     {
         return $this->couponFactory->create()->getCouponCodeList();
     }
