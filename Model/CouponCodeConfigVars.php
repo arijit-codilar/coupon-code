@@ -29,7 +29,8 @@ class CouponCodeConfigVars implements ConfigProviderInterface
     public function getConfig()
     {
         $couponModel = $this->couponFactory->create();
-        $coupons = $couponModel->getCouponCodes();
+        $coupons = $couponModel->getCouponCodeList();
+        $codes[] = [' '];
         foreach($coupons as $coupon){
             $codes[] = $coupon->getCode();
         }
