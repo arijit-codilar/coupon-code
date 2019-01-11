@@ -30,7 +30,7 @@ class CouponCodeConfigVars implements ConfigProviderInterface
     {
         $couponModel = $this->couponFactory->create();
         $coupons = $couponModel->getCouponCodeList();
-        $codes[] = [' '];
+        $codes[] = [''];
         foreach($coupons as $coupon){
             $codes[] = $coupon->getCode();
         }
