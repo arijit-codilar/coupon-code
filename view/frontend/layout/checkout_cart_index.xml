@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * checkout_cart_index
+ *
+ * @copyright Copyright © 2019 Codilar Technologies. All rights reserved.
+ * @author    arijit@codilar.com
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="cart.summary">
+            <block class="Codilar\CouponCode\Block\Cart\Coupon" name="checkout.cart.coupon" as="coupon" template="Codilar_CouponCode::cart/coupon.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
