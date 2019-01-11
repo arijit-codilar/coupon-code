@@ -23,7 +23,8 @@
                 <div class="control">
                     <select id="coupon_code" name="coupon_code"
                             title="<?= /* @noEscape */ $block->escapeHtml(__("coupon_code"));?>"
-                            class="validate-select">
+                            class="validate-select"
+                        <?php if (strlen($block->getCouponCode())): ?> disabled="disabled" <?php endif; ?>>
                         <option value=""><?= $block->escapeHtml(__('Please select a coupon')) ?></option>
                         <?php foreach ($block->getCouponCodes() as $coupon): ?>
                             <option value="<?= $coupon->getCode() ?>" <?php if ($coupon->getCode() == $block->getCouponCode()): ?> selected <?php endif; ?> ><?= $coupon->getCode() ?></option>
@@ -31,11 +32,17 @@
                     </select>
                 </div>
                 <div class="actions-toolbar">
-                    <div class="primary">
-                        <button class="action apply primary" type="button" value="<?= /* @escapeNotVerified */ __('Apply Discount') ?>">
-                            <span><?= /* @escapeNotVerified */ __('Apply Discount') ?></span>
-                        </button>
-                    </div>
+                    <?php if (!strlen($block->getCouponCode())): ?>
+                        <div class="primary">
+                            <button class="action apply primary" type="button" value="<?= /* @escapeNotVerified */ __('Apply Discount') ?>">
+                                <span><?= /* @escapeNotVerified */ __('Apply Discount') ?></span>
+                            </button>
+                        </div>
+                    <?php else: ?>
+                        <div class="primary">
+                            <button  type="button" class="action cancel primary" value="<?= /* @escapeNotVerified */ __('Cancel Coupon') ?>"><span><?= /* @escapeNotVerified */ __('Cancel Coupon') ?></span></button>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </form>
